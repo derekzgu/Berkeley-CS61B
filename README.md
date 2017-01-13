@@ -1,2 +1,2 @@
 # Berkeley-CS61B
-Notes and codes of CS61B Data Structures (Spring 2016), a Berkeley course
+My notes and codes of [Berkeley CS 61B Data Structures Spring 2016](http://datastructur.es/sp16/).
