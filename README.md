@@ -1,2 +1,2 @@
 # Berkeley-CS61B
-Self learning CS61B Data Structures, a Berkeley course
+Notes and codes of CS61B Data Structures, a Berkeley course
