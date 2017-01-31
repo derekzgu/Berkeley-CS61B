@@ -1,3 +1,4 @@
+import java.io.BufferedReader;
 import java.util.Formatter;
 
 /**
@@ -36,7 +37,6 @@ public class IntList {
      * Returns a list equal to L with all elements squared. Destructive.
      */
     public static void dSquareList(IntList L) {
-
         while (L != null) {
             L.head = L.head * L.head;
             L = L.tail;
@@ -69,6 +69,7 @@ public class IntList {
             return null;
         }
         return new IntList(L.head * L.head, squareListRecursive(L.tail));
+
     }
 
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
@@ -81,7 +82,12 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList ptr = A;
+        while (A.tail != null) {
+            A = A.tail;
+        }
+        A.tail = B;
+        return ptr;
     }
 
     /**
@@ -90,7 +96,10 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        if (A == null) {
+            return B;
+        }
+        return new IntList(A.head, catenate(A.tail, B));
     }
 
 
