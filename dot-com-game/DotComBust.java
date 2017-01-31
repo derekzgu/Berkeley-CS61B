@@ -6,17 +6,17 @@ public class DotComBust {
     private int numOfGuesses = 0;
 
     private void setUpGame() {
-        DotCom one = new DotCom();
-        one.setName("holyshit.com");
-        DotCom two = new DotCom();
-        two.setName("wtf.com");
-        DotCom three = new DotCom();
-        three.setName("doshoot.com");
-        dotComsList.add(one);
-        dotComsList.add(two);
-        dotComsList.add(three);
+        DotCom dotComOne = new DotCom();
+        dotComOne.setName("holyshit.com");
+        DotCom dotComTwo = new DotCom();
+        dotComTwo.setName("wtf.com");
+        DotCom dotComThree = new DotCom();
+        dotComThree.setName("doshoot.com");
+        dotComsList.add(dotComOne);
+        dotComsList.add(dotComTwo);
+        dotComsList.add(dotComThree);
         System.out.println("Welcome to Dot Com Bust Game!");
-        System.out.println("Your Goal is to sink three dot coms.");
+        System.out.println("Your Goal is to sink dotComThree dot coms.");
         System.out.println("Try to sink them all in fewest numbers of guesses.");
 
         for (DotCom dotComToSet : dotComsList) {
