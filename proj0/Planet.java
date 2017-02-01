@@ -47,7 +47,11 @@ public class Planet {
     }
 
     public double calcNetForceExertedByX(Planet[] allPlanets) {
+        if (allPlanets == null) {
+            throw new NullPointerException();
+        }
         double netForceX = 0;
+
         for (Planet planet : allPlanets) {
             if (!this.equals(planet)) {
                 netForceX += calcForceExertedByX(planet);
@@ -57,6 +61,9 @@ public class Planet {
     }
 
     public double calcNetForceExertedByY(Planet[] allPlanets) {
+        if (allPlanets == null) {
+            throw new NullPointerException();
+        }
         double netForceY = 0;
         for (Planet planet : allPlanets) {
             if (!this.equals(planet)) {
