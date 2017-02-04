@@ -1,4 +1,3 @@
-import java.io.BufferedReader;
 import java.util.Formatter;
 
 /**
@@ -11,11 +10,11 @@ public class IntList {
     /**
      * First element of list.
      */
-    public int head;
+    private int head;
     /**
      * Remaining elements of list.
      */
-    public IntList tail;
+    private IntList tail;
 
     /**
      * A List with head HEAD0 and tail TAIL0.
@@ -121,7 +120,6 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
         IntList ptr = A;
         while (A.tail != null) {
             A = A.tail;
@@ -135,7 +133,6 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
         if (A == null) {
             return B;
         }
@@ -214,26 +211,28 @@ public class IntList {
         IntList tortoise = A;
         IntList hare = A;
 
-        if (A == null)
+        if (A == null) {
             return 0;
-
+        }
         int cnt = 0;
 
 
         while (true) {
             cnt++;
-            if (hare.tail != null)
+            if (hare.tail != null) {
                 hare = hare.tail.tail;
-            else
+            } else {
                 return 0;
-
+            }
             tortoise = tortoise.tail;
 
-            if (tortoise == null || hare == null)
+            if (tortoise == null || hare == null) {
                 return 0;
+            }
 
-            if (hare == tortoise)
+            if (hare == tortoise) {
                 return cnt;
+            }
         }
     }
 
