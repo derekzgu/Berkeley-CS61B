@@ -59,15 +59,37 @@ public class IntListTest {
 
     @Test
     public void testCatenate() {
-        IntList A = IntList.list(1,2,3);
+        IntList A = IntList.list(1, 2, 3);
         IntList B = IntList.list(4, 5, 6);
         IntList exp = IntList.list(1, 2, 3, 4, 5, 6);
         assertEquals(exp, IntList.catenate(A, B));
         assertEquals(IntList.list(1, 2, 3), A);
     }
 
-    /** If you're running this from the command line, you'll need
-      * to add a main method. See ArithmeticTest.java for an
-      * example. */
+    @Test(timeout = 1000)
+    public void testReverse() {
+        IntList A = IntList.list();
+        IntList B = IntList.list(4, 5, 6, 10);
+        IntList C = IntList.list(1);
 
+        IntList expA = IntList.list();
+        IntList expB = IntList.list(10, 6, 5, 4);
+        IntList expC = IntList.list(1);
+
+        assertEquals(expA, IntList.reverse(A));
+        assertEquals(expB, IntList.reverse(B));
+        assertEquals(expC, IntList.reverse(C));
+
+        /* Test if reverse() is destructive. */
+        assertNotEquals(B, IntList.reverse(B));
+    }
+
+    /**
+     * If you're running this from the command line, you'll need
+     * to add a main method. See ArithmeticTest.java for an
+     * example.
+     */
+    public static void main(String... args) {
+        jh61b.junit.TestRunner.runTests("all", IntList.class);
+    }
 }

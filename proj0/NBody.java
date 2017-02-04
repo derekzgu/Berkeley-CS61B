@@ -18,7 +18,8 @@ public class NBody {
         radius = in.readDouble();
         Planet[] allPlanets = new Planet[numOfBody];
         for (int i = 0; i < numOfBody; ++i) {
-            allPlanets[i] = new Planet(in.readDouble(), in.readDouble(), in.readDouble(), in.readDouble(),
+            allPlanets[i] = new Planet(in.readDouble(), in.readDouble(),
+                    in.readDouble(), in.readDouble(),
                     in.readDouble(), in.readString());
         }
         return allPlanets;
@@ -51,8 +52,8 @@ public class NBody {
         /* Creating an animation. */
         double time = 0;
         while (time <= T) {
-            double xForces[] = new double[numOfBody];
-            double yForces[] = new double[numOfBody];
+            double[] xForces = new double[numOfBody];
+            double[] yForces = new double[numOfBody];
 
             for (int i = 0; i < numOfBody; ++i) {
                 xForces[i] = allPlanets[i].calcNetForceExertedByX(allPlanets);
@@ -77,7 +78,8 @@ public class NBody {
         StdOut.printf("%.2e\n", radius);
         for (int i = 0; i < allPlanets.length; i++) {
             StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
-                    allPlanets[i].xxPos, allPlanets[i].yyPos, allPlanets[i].xxVel, allPlanets[i].yyVel, allPlanets[i].mass, allPlanets[i].imgFileName);
+                    allPlanets[i].xxPos, allPlanets[i].yyPos, allPlanets[i].xxVel,
+                    allPlanets[i].yyVel, allPlanets[i].mass, allPlanets[i].imgFileName);
         }
 
     }
