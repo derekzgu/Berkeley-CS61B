@@ -4,7 +4,6 @@
  * @author Wending Peng
  */
 public class LinkedListDeque<Item> {
-
     /**
      * Node of linked list.
      */
@@ -27,17 +26,19 @@ public class LinkedListDeque<Item> {
         }
     }
 
-    /* helper to build the linked list deque */
-    private final Node sentinel = new Node(null, null, null);
-    private Node front = null;
-    private Node back = null;
+    private Node sentinel;
+    private Node front;
+    private Node back;
 
-    private int len = 0;    // length of the Deque
+    private int size;    // length of the Deque
 
     /**
      * Class constructor, creating a empty linked list deque.
      */
     public LinkedListDeque() {
+        front = back = null;
+        sentinel = new Node(null, null, null);
+        size = 0;
     }
 
     /**
@@ -46,11 +47,10 @@ public class LinkedListDeque<Item> {
      * @param item the item of the only one node
      */
     private void addTheOnlyNode(Item item) {
-        front = new Node(item, sentinel, sentinel);
-        back = front;
+        front = back = new Node(item, sentinel, sentinel);
         sentinel.prev = back;
         sentinel.next = front;
-        ++len;
+        ++size;
     }
 
     /**
@@ -59,15 +59,14 @@ public class LinkedListDeque<Item> {
      * @param item item to add
      */
     public void addFirst(Item item) {
-        if (front == null) {
+        if (size == 0) {
             addTheOnlyNode(item);
             return;
         }
         Node newFront = new Node(item, sentinel, front);
         front.prev = newFront;
-        front = newFront;
-        sentinel.next = front;
-        ++len;
+        sentinel.next = front = newFront;
+        ++size;
     }
 
     /**
@@ -76,15 +75,14 @@ public class LinkedListDeque<Item> {
      * @param item item to add
      */
     public void addLast(Item item) {
-        if (back == null) {
+        if (size == 0) {
             addTheOnlyNode(item);
             return;
         }
         Node newBack = new Node(item, back, sentinel);
         back.next = newBack;
-        back = newBack;
-        sentinel.prev = back;
-        ++len;
+        sentinel.prev = back = newBack;
+        ++size;
     }
 
     /**
@@ -93,7 +91,7 @@ public class LinkedListDeque<Item> {
      * @return is the Deque empty
      */
     public boolean isEmpty() {
-        return len == 0;
+        return size == 0;
     }
 
     /**
@@ -102,14 +100,14 @@ public class LinkedListDeque<Item> {
      * @return size of the Deque
      */
     public int size() {
-        return len;
+        return size;
     }
 
     /**
      * Prints the items from first to last, separated by a space.
      */
     public void printDeque() {
-        if (len == 0) {
+        if (size == 0) {
             return;
         }
         Node iterator = front;
@@ -121,7 +119,7 @@ public class LinkedListDeque<Item> {
 
     private void removeTheOnlyItem() {
         front = back = sentinel.next = sentinel.prev = null;
-        --len;
+        --size;
     }
 
     /**
@@ -130,17 +128,17 @@ public class LinkedListDeque<Item> {
      * @return the original front item; null if empty
      */
     public Item removeFirst() {
-        if (len == 0) {
+        if (size == 0) {
             return null;
         }
         Node originalFront = front;
-        if (len == 1) {
+        if (size == 1) {
             removeTheOnlyItem();
             return originalFront.item;
         }
         sentinel.next = front = front.next;
         front.prev = sentinel;
-        --len;
+        --size;
         return originalFront.item;
     }
 
@@ -150,17 +148,17 @@ public class LinkedListDeque<Item> {
      * @return the original back item; null if empty
      */
     public Item removeLast() {
-        if (len == 0) {
+        if (size == 0) {
             return null;
         }
         Node originalBack = back;
-        if (len == 1) {
+        if (size == 1) {
             removeTheOnlyItem();
             return originalBack.item;
         }
         sentinel.prev = back = back.prev;
         back.next = sentinel;
-        --len;
+        --size;
         return originalBack.item;
     }
 
@@ -171,7 +169,7 @@ public class LinkedListDeque<Item> {
      * @return the index-th item; null if no such item
      */
     public Item get(int index) {
-        if (index < 0 || index > len - 1) {
+        if (index < 0 || index > size - 1) {
             return null;
         }
         Node nodeToGet = front;
@@ -195,7 +193,7 @@ public class LinkedListDeque<Item> {
     }
 
     private Item getRecursiveHelper(int index) {
-        if (index < 0 || index > len - 1) {
+        if (index < 0 || index > size - 1) {
             return null;
         }
         if (index == 0) {
