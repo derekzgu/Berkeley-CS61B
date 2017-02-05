@@ -35,9 +35,7 @@ public class IntList {
     /* Insert back to an IntList to make a new one, destructive. */
     private static IntList insertBack(IntList oldList, int lastItem) {
         if (oldList == null) {
-            oldList.head = lastItem;
-            oldList.tail = null;
-            return oldList;
+            return new IntList(lastItem, null);
         }
         IntList newList = oldList;
         while (oldList.tail != null) {
@@ -189,10 +187,7 @@ public class IntList {
                 return false;
             }
         }
-        if (p != null || L != null) {
-            return false;
-        }
-        return true;
+        return !(p != null || L != null);
     }
 
     /**
