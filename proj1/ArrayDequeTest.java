@@ -1,3 +1,7 @@
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * Test Array Deque.
  *
@@ -77,9 +81,46 @@ public class ArrayDequeTest {
 
     }
 
+    @Test
+    public void testRemoveFirst() {
+        ArrayDeque<Integer> studentArrayDeque = new ArrayDeque<>();
+        for (int i = 0; i < 8; ++i) {
+            studentArrayDeque.addFirst(i);
+        }
+        studentArrayDeque.printDeque();
+        for (int i = 0; i < 8; ++i) {
+            studentArrayDeque.removeFirst();
+            studentArrayDeque.printDeque();
+        }
+    }
+
+    @Test
+    public void testRemoveFirstWithFailureSequence() {
+        ArrayDeque<Integer> studentArrayDeque = new ArrayDeque<>();
+        ArrayDequeSolution<Integer> arrayDequeSolution = new ArrayDequeSolution<>();
+        FailureSequence failureSequence = new FailureSequence();
+        DequeOperation dequeOperation;
+        for (int i = 0; i < 8; ++i) {
+            studentArrayDeque.addFirst(i);
+            arrayDequeSolution.addFirst(i);
+            dequeOperation = new DequeOperation("addFirst", i);
+            failureSequence.addOperation(dequeOperation);
+        }
+        studentArrayDeque.printDeque();
+        Integer actual, expected;
+        for (int i = 0; i < 8; i++) {
+            actual = studentArrayDeque.removeFirst();
+            expected = arrayDequeSolution.removeFirst();
+            dequeOperation = new DequeOperation("removeFirst");
+            failureSequence.addOperation(dequeOperation);
+            assertEquals(failureSequence.toString(), expected, actual);
+        }
+    }
+
     public static void main(String[] args) {
 
-        arrayDequeTest();
+//        arrayDequeTest();
+        jh61b.junit.TestRunner.runTests("all", ArrayDeque.class);
     }
 
 }

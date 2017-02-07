@@ -20,6 +20,12 @@ public class ArrayDeque<Item> {
         nextLast = 0;
     }
 
+    /**
+     * Two circular arithmetic operations: index + 1 and index - 1.
+     *
+     * @param index index to minus or plus one
+     * @return the result
+     */
     private int minusOne(int index) {
         return (index + arrayLength - 1) % arrayLength;
     }
@@ -28,12 +34,25 @@ public class ArrayDeque<Item> {
         return (index + 1) % arrayLength;
     }
 
+    private int getFirstIndex() {
+        return plusOne(nextFirst);
+    }
+
+    private int getLastIndex() {
+        return minusOne(nextLast);
+    }
+
     /**
      * Add an item to the front.
      *
      * @param item to add
      */
     public void addFirst(Item item) {
+        if (size == arrayLength) {
+            resize(2.0);
+        }
+//        printDeque();
+//        System.out.println(nextFirst);
         arrayDeque[nextFirst] = item;
         nextFirst = minusOne(nextFirst);
         ++size;
@@ -45,10 +64,48 @@ public class ArrayDeque<Item> {
      * @param item to add
      */
     public void addLast(Item item) {
+        if (size == arrayLength) {
+            resize(2.0);
+        }
         arrayDeque[nextLast] = item;
         nextLast = plusOne(nextLast);
         ++size;
     }
+
+    /**
+     * Set all elements of the array to null.
+     *
+     * @param arrayToEmpty the array to empty
+     */
+    private void emptyArray(Item[] arrayToEmpty) {
+        for (int i = 0; i < arrayLength; ++i) {
+            arrayToEmpty[i] = null;
+        }
+    }
+
+    /**
+     * Resize the array and reset the indexes without
+     * changing the relative order of elements.
+     *
+     * @param ratio new array length / original length
+     */
+    public void resize(double ratio) {
+        int newArrayLength = (int) (arrayLength * ratio);
+        Item[] temp = (Item[]) new Object[newArrayLength];
+        emptyArray(temp);
+
+        for (int i = 0; i < size; ++i) {
+            temp[i] = arrayDeque[(getFirstIndex() + i) % arrayLength];
+        }
+
+        arrayDeque = temp;
+
+        /* Reset parameters. */
+        arrayLength = newArrayLength;
+        nextFirst = arrayLength - 1;
+        nextLast = size;
+    }
+
 
     /**
      * Check if the Deque is empty or not.
@@ -72,7 +129,7 @@ public class ArrayDeque<Item> {
      * Print the items from first to last, separated by a space.
      */
     public void printDeque() {
-        for (int i = plusOne(nextFirst); i != nextLast; i = plusOne(i)) {
+        for (int i = getFirstIndex(); i != nextLast; i = plusOne(i)) {
             System.out.print(arrayDeque[i] + " ");
         }
     }
@@ -86,15 +143,18 @@ public class ArrayDeque<Item> {
         if (size == 0) {
             return null;
         }
-        Item firstItem = arrayDeque[plusOne(nextFirst)];
-        arrayDeque[plusOne(nextFirst)] = null;
-        nextFirst = plusOne(nextFirst);
+        if (isTooEmpty()) {
+            resize(0.5);
+        }
+        Item firstItem = arrayDeque[getFirstIndex()];
+        arrayDeque[getFirstIndex()] = null;
+        nextFirst = getFirstIndex();
         --size;
         return firstItem;
     }
 
     /**
-     * Remove and return the item at the back.
+     * Removes and returns the item at the back.
      *
      * @return the original back item; null if empty
      */
@@ -102,11 +162,25 @@ public class ArrayDeque<Item> {
         if (size == 0) {
             return null;
         }
-        Item lastItem = arrayDeque[minusOne(nextLast)];
-        arrayDeque[minusOne(nextLast)] = null;
-        nextLast = minusOne(nextLast);
+        if (isTooEmpty()) {
+            resize(0.5);
+        }
+        Item lastItem = arrayDeque[getLastIndex()];
+        arrayDeque[getLastIndex()] = null;
+        nextLast = getLastIndex();
         --size;
         return lastItem;
+    }
+
+    /**
+     * Decides if the used space ratio of the array is too low.
+     *
+     * @return true if is too empty; false if not.
+     */
+    private boolean isTooEmpty() {
+        final double LEAST_RATIO = 0.25D;
+        double actualRatio = (double) size / (double) arrayLength;
+        return arrayLength >= 16 && actualRatio < LEAST_RATIO;
     }
 
     /**
@@ -120,7 +194,6 @@ public class ArrayDeque<Item> {
         if (index < 0 || index > size) {
             return null;
         }
-        int iterator = plusOne(nextFirst);
-        return arrayDeque[(iterator + index) % arrayLength];
+        return arrayDeque[(getFirstIndex() + index) % arrayLength];
     }
 }
