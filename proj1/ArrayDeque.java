@@ -21,10 +21,11 @@ public class ArrayDeque<Item> {
     }
 
     /**
-     * Two circular arithmetic operations: index + 1 and index - 1.
+     * Utility functions to perform two common circular
+     * array arithmetic operations: index + 1 and index - 1.
      *
      * @param index index to minus or plus one
-     * @return the result
+     * @return the result of the operation
      */
     private int minusOne(int index) {
         return (index + arrayLength - 1) % arrayLength;
@@ -34,6 +35,11 @@ public class ArrayDeque<Item> {
         return (index + 1) % arrayLength;
     }
 
+    /**
+     * Utility methods to get the index of the first/last item.
+     *
+     * @return the index of the first/last item
+     */
     private int getFirstIndex() {
         return plusOne(nextFirst);
     }
@@ -43,25 +49,23 @@ public class ArrayDeque<Item> {
     }
 
     /**
-     * Add an item to the front.
+     * Adds an item to the front.
      *
-     * @param item to add
+     * @param item item to add
      */
     public void addFirst(Item item) {
         if (size == arrayLength) {
             resize(2.0);
         }
-//        printDeque();
-//        System.out.println(nextFirst);
         arrayDeque[nextFirst] = item;
         nextFirst = minusOne(nextFirst);
         ++size;
     }
 
     /**
-     * Add an item to the back.
+     * Adds an item to the back.
      *
-     * @param item to add
+     * @param item item to add
      */
     public void addLast(Item item) {
         if (size == arrayLength) {
@@ -73,7 +77,7 @@ public class ArrayDeque<Item> {
     }
 
     /**
-     * Set all elements of the array to null.
+     * Sets all elements of the given array to null.
      *
      * @param arrayToEmpty the array to empty
      */
@@ -84,12 +88,12 @@ public class ArrayDeque<Item> {
     }
 
     /**
-     * Resize the array and reset the indexes without
+     * Resizes the array and resets the indexes without
      * changing the relative order of elements.
      *
      * @param ratio new array length / original length
      */
-    public void resize(double ratio) {
+    private void resize(double ratio) {
         int newArrayLength = (int) (arrayLength * ratio);
         Item[] temp = (Item[]) new Object[newArrayLength];
         emptyArray(temp);
@@ -108,7 +112,7 @@ public class ArrayDeque<Item> {
 
 
     /**
-     * Check if the Deque is empty or not.
+     * Checks if the Deque is empty or not.
      *
      * @return is the Deque empty
      */
@@ -117,7 +121,7 @@ public class ArrayDeque<Item> {
     }
 
     /**
-     * Get size of the Deque
+     * Gets size of the Deque
      *
      * @return size of the Deque
      */
@@ -126,7 +130,7 @@ public class ArrayDeque<Item> {
     }
 
     /**
-     * Print the items from first to last, separated by a space.
+     * Prints the items from first to last, separated by a space.
      */
     public void printDeque() {
         for (int i = getFirstIndex(); i != nextLast; i = plusOne(i)) {
@@ -135,7 +139,7 @@ public class ArrayDeque<Item> {
     }
 
     /**
-     * removes and return the item at the front.
+     * Removes and return the item at the front.
      *
      * @return the original front item; null if empty
      */
@@ -184,8 +188,8 @@ public class ArrayDeque<Item> {
     }
 
     /**
-     * Get the item at the given index (zero based).
-     * Take constant time.
+     * Gets the item at the given index (zero based).
+     * Takes constant time.
      *
      * @param index the item's index
      * @return index-th item; null if no such item
