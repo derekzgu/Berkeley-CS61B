@@ -1,7 +1,10 @@
-/** Utilities for lab 5
- *  @author Josh Hug
+/**
+ * Utilities for lab 5
+ *
+ * @author Josh Hug
  */
 package huglife;
+
 import java.util.Random;
 import java.util.List;
 
@@ -18,7 +21,7 @@ public class HugLifeUtils {
     }
 
     /** Returns a random number uniformly between min and max inclusive
-        Stolen from: http://stackoverflow.com/questions/363681 */
+     Stolen from: http://stackoverflow.com/questions/363681 */
     public static int randomInt(int min, int max) {
         if (r == null)
             r = new Random();
