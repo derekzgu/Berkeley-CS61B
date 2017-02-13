@@ -143,8 +143,8 @@ public class SampleCreature extends Creature {
      * SampleCreature.
      */
     public SampleCreature replicate() {
-        energy = energy * repEnergyRetained;
         double babyEnergy = energy * repEnergyGiven;
+        energy = energy * repEnergyRetained;
         return new SampleCreature(babyEnergy);
     }
 

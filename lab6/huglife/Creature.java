@@ -5,9 +5,10 @@ import java.util.Map;
 import java.util.List;
 
 /**
+ * A class that represents living creatures. You should
+ * extend this class to populate your world.
+ *
  * @author Josh Hug
- *         A class that represents living creatures. You should
- *         extend this class to populate your world.
  */
 public abstract class Creature extends Occupant {
     /**
