@@ -1,12 +1,15 @@
-// TODO: Make sure to make this class a part of the synthesizer package
-// package <package name>;
+package synthesizer;
+
 import java.util.Iterator;
 
+/**
+ * @author Wending Peng
+ */
+
 //TODO: Make sure to make this class and all of its methods public
-//TODO: Make sure to make this class extend AbstractBoundedQueue<t>
-public class ArrayRingBuffer<T>  {
+public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Index for the next dequeue or peek. */
-    private int first;            // index for the next dequeue or peek
+    private int first;
     /* Index for the next enqueue. */
     private int last;
     /* Array for storing the buffer data. */

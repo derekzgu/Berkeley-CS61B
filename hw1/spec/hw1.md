@@ -139,7 +139,7 @@ In practice, large Java libraries often have a hierarchy of interfaces, which ar
 Task 3: ArrayRingBuffer
 --------------------------------
 
-The `ArrayRingBuffer` class will do all the real work by extending `AbstractBoundedQueue`. That means we can happily inherit `capacity()`, `fillCount()`, `isEmpty()`, and `isFull()` without having to override these, but we'll need to override all of the the abstract methods. In this part, you'll fill out `ArrayRingBuffer.java`. You'll need to rename the file from `ArrayRingBuffer.java.skeleton` to `ArrayRingBuffer.java`.
+The `ArrayRingBuffer` class will do all the real work by extending `AbstractBoundedQueue`. That means we can happily inherit `capacity()`, `fillCount()`, `isEmpty()`, and `isFull()` without having to override these, but we'll need to override all of the the abstract methods. In this part, you'll fill out `ArrayRingBuffer.java`. You'll need to rename the file from `ArrayRingBuffer.java` to `ArrayRingBuffer.java`.
 
 A naive array implementation of a BoundedQueue would store the newest item at position 0, the second newest item in position 1, and so forth. This is an inefficient approach, as we see in the example below, where the comments show entries 0, 1, 2, and 3 of the array respectively. We assume that the array is initially all nulls.
 
@@ -201,7 +201,7 @@ Or visually, if the BoundedQueue is as shown on the top, we'd dequeue the 0.2, c
 
 You can play a double value with the StdAudio.play() method. For example StdAudio.play(0.333) will tell the diaphragm of your speaker to extend itself to 1/3rd of its total reach, StdAudio.play(-0.9) will tell it to stretch its little heart backwards almost as far as it can reach. Movement of the speaker diaphragm displaces air, and if you displace air in nice patterns, these disruptions will be intepreted by your consciousness as pleasing thanks to billions of years of evolution. See [this page](http://electronics.howstuffworks.com/speaker6.htm) for more. If you simply do StdAudio.play(0.9) and never play anything again, the diaphragm shown in the image would just be sitting still 9/10ths of the way forwards. 
 
-Rename `GuitarString.java.skeleton` to `GuitarString.java`. Complete 'GuitarString.java' so that it implements steps 1 and 2 of the Karplus-Strong algorithm. Step 3 will be done by the client of the `GuitarString` class.
+Rename `GuitarString.java` to `GuitarString.java`. Complete 'GuitarString.java' so that it implements steps 1 and 2 of the Karplus-Strong algorithm. Step 3 will be done by the client of the `GuitarString` class.
 
 For example, the provided `TestGuitarString` class provides a sample test `testPluckTheAString` that attempts to play an A-note on a guitar string. You should hear an A-note when you run this test. If you don't, you should try the `testTic` method and debug from there. Consider adding a `print` or `toString` method to `GuitarString.java` that will help you see what's going on between tics.
 
