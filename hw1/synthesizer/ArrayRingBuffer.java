@@ -9,7 +9,6 @@ import java.util.Iterator;
  * @author Wending Peng
  */
 
-//TODO: Make sure to make this class and all of its methods public
 public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Index for the next dequeue or peek. */
     private int first;
