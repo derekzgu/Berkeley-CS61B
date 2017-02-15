@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */
 
 public class TestGuitarString {
-/*    @Test
+    @Test
     public void testPluckTheAString() {
         double CONCERT_A = 440.0;
         GuitarString aString = new GuitarString(CONCERT_A);
@@ -25,9 +25,9 @@ public class TestGuitarString {
             StdAudio.play(aString.sample());
             aString.tic();
         }
-    }*/
+    }
 
-/*
+
     @Test
     public void testTic() {
         // Create a GuitarString of frequency 11025, which
@@ -39,7 +39,7 @@ public class TestGuitarString {
         double s1 = s.sample();
         s.tic();
         double s2 = s.sample();
-        s.tic(); 
+        s.tic();
         double s3 = s.sample();
         s.tic();
         double s4 = s.sample();
@@ -56,7 +56,6 @@ public class TestGuitarString {
         assertEquals(expected, s5, 0.001);
 
     }
-*/
 
     /**
      * Calls tests for GuitarString.
