@@ -1,11 +1,13 @@
 package lab8;
+
 import java.util.Set;
-/* Your implementation BSTMap should implement this interface. To do so, 
+
+/* Your implementation BSTMap should implement this interface. To do so,
  * append "implements Map61B<K,V>" to the end of your "public class..."
  * declaration, though you can use other formal type parameters if you'd like.
- */ 
+ */
 public interface Map61B<K, V> extends Iterable<K> {
-    /** Removes all of the mappings from this map. */
+    /* Removes all of the mappings from this map. */
     void clear();
 
     /* Returns true if this map contains a mapping for the specified key. */
@@ -23,7 +25,7 @@ public interface Map61B<K, V> extends Iterable<K> {
     void put(K key, V value);
 
     /* Returns a Set view of the keys contained in this map. */
-    Set<K> keySet();    
+    Set<K> keySet();
 
     /* Removes the mapping for the specified key from this map if present.
      * Not required for Lab 8. If you don't implement this, throw an 

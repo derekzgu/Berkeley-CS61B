@@ -1,13 +1,17 @@
 package lab8;
+
 import java.util.TreeMap;
 import java.io.IOException;
 import java.util.Scanner;
+
 import edu.princeton.cs.algs4.Stopwatch;
 
-/** Performs a timing test on three different set implementations.
- *  For BSTMap purposes assumes that <K,V> are <String, Integer> pairs.
- *  @author Josh Hug 
- *  @author Brendan Hu
+/**
+ * Performs a timing test on three different set implementations.
+ * For BSTMap purposes assumes that <K,V> are <String, Integer> pairs.
+ *
+ * @author Josh Hug
+ * @author Brendan Hu
  */
 public class InsertInOrderSpeedTest {
     /*
@@ -22,21 +26,21 @@ public class InsertInOrderSpeedTest {
         InsertRandomSpeedTest i = new InsertRandomSpeedTest();
 
         System.out.println("\n This program inserts lexicographically increasing Strings"
-                           + "into Maps as <String, Integer> pairs.");
+                + "into Maps as <String, Integer> pairs.");
 
         String repeat = "y";
         do {
             System.out.print("\nEnter # strings to insert into ULLMap: ");
-            timeInOrderMap61B(new ULLMap<String, Integer>(), 
-                              i.waitForPositiveInt(input));
-       
+            timeInOrderMap61B(new ULLMap<String, Integer>(),
+                    i.waitForPositiveInt(input));
+
             System.out.print("\nEnter # strings to insert into BSTMap: ");
-            timeInOrderMap61B(new BSTMap<String, Integer>(), 
-                              i.waitForPositiveInt(input));
-    
+            timeInOrderMap61B(new BSTMap<String, Integer>(),
+                    i.waitForPositiveInt(input));
+
             System.out.print("\nEnter # strings to insert into Java's TreeMap: ");
-            timeInOrderTreeMap(new TreeMap<String, Integer>(), 
-                              i.waitForPositiveInt(input));                        
+            timeInOrderTreeMap(new TreeMap<String, Integer>(),
+                    i.waitForPositiveInt(input));
 
             System.out.print("\nWould you like to try more timed-tests? (y/n): ");
             repeat = input.nextLine();
@@ -57,8 +61,9 @@ public class InsertInOrderSpeedTest {
         }
         return sw.elapsedTime();
     }
-    
-    /** Returns time needed to put N strings into TreeMap in increasing order.
+
+    /**
+     * Returns time needed to put N strings into TreeMap in increasing order.
      */
     public static double insertInOrder(TreeMap<String, Integer> ts, int N) {
         Stopwatch sw = new Stopwatch();
@@ -75,14 +80,14 @@ public class InsertInOrderSpeedTest {
         Prints time of the N insert calls, otherwise
         Prints a nice message about the error
     */
-    public static void timeInOrderMap61B(Map61B<String, Integer> map, int N) {        
+    public static void timeInOrderMap61B(Map61B<String, Integer> map, int N) {
         try {
             double mapTime = insertInOrder(map, N);
             System.out.printf(map.getClass() + ": %.2f sec\n", mapTime);
-        } catch (StackOverflowError e) { 
-            printInfoOnStackOverflow(N); 
-        } catch (RuntimeException e) { 
-            e.printStackTrace(); 
+        } catch (StackOverflowError e) {
+            printInfoOnStackOverflow(N);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
         }
     }
 
@@ -91,14 +96,14 @@ public class InsertInOrderSpeedTest {
         Prints time of the N insert calls, otherwise
         Prints a nice message about the error
     */
-    public static void timeInOrderTreeMap(TreeMap<String, Integer> treeMap, int N) {        
+    public static void timeInOrderTreeMap(TreeMap<String, Integer> treeMap, int N) {
         try {
             double javaTime = insertInOrder(treeMap, N);
             System.out.printf("Java's Built-in TreeMap: %.2f sec\n", javaTime);
-        } catch (StackOverflowError e) { 
-            printInfoOnStackOverflow(N); 
-        } catch (RuntimeException e) { 
-            e.printStackTrace(); 
+        } catch (StackOverflowError e) {
+            printInfoOnStackOverflow(N);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
         }
     }
 
