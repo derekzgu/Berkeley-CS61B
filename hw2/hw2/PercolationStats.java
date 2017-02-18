@@ -5,6 +5,10 @@ import edu.princeton.cs.introcs.StdStats;
 import static edu.princeton.cs.introcs.StdRandom.uniform;
 import static java.lang.Math.sqrt;
 
+/**
+ * @author Wending Peng
+ */
+
 public class PercolationStats {
     /* Perform T independent experiments on an N-by-N grid. */
     private int N, T;
