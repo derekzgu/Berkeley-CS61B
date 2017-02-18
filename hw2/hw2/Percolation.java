@@ -1,7 +1,9 @@
 package hw2;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-
+/**
+ * @author Wending Peng
+ */
 public class Percolation {
 
     private class Site {
