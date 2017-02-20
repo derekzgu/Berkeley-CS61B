@@ -21,8 +21,9 @@ public class ArrayHeap<T> {
      */
     public void insert(T item, double priority) {
         Node newNode = new Node(item, priority);
-        setNode(contents.size(), newNode);
-        bubbleUp(contents.size());
+        int insertIndex = contents.size();
+        setNode(insertIndex, newNode);
+        bubbleUp(insertIndex);
     }
 
     /**
