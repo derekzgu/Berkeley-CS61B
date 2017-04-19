@@ -26,8 +26,8 @@ public class Percolation {
     private int side;
     private int numberOfOpenSites;
 
-    private final int dx[] = {-1, 0, 0, 1};
-    private final int dy[] = {0, -1, 1, 0};
+    private final int[] dx = {-1, 0, 0, 1};
+    private final int[] dy = {0, -1, 1, 0};
 
     /* Change item of the 2D array to an index. */
     private int xyToIndex(int row, int col) {
