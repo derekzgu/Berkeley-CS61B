@@ -1,7 +1,6 @@
 package synthesizer;
 
 import org.omg.SendingContext.RunTime;
-
 import javax.management.relation.RoleUnresolved;
 import java.util.Iterator;
 
@@ -15,15 +14,16 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Index for the next enqueue. */
     private int last;
     /* Array for storing the buffer data. */
-    private T[] rb;
+    private T[] ringBuffer;
 
     /**
      * Create a new ArrayRingBuffer with the given capacity.
      */
     public ArrayRingBuffer(int capacity) {
         this.capacity = capacity;
-        rb = (T[]) new Object[capacity];
-        first = last = fillCount = 0;
+        ringBuffer = (T[]) new Object[capacity];
+        first = fillCount = 0;
+        last = capacity - 1;
     }
 
     /**
@@ -35,8 +35,8 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         if (isFull()) {
             throw new RuntimeException("Ring buffer overflow");
         }
-        rb[last] = x;
-        last = last == capacity - 1 ? 0 : last + 1;
+        ringBuffer[last] = x;
+        last = (last + 1) % capacity;
         ++fillCount;
     }
 
@@ -49,23 +49,22 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         if (isEmpty()) {
             throw new RuntimeException("Ring buffer underflow");
         }
-        T oldFirstItem = rb[first];
-        rb[first] = null;
-        first = first == capacity - 1 ? 0 : first + 1;
+        T originalFirstItem = ringBuffer[first];
+        ringBuffer[first] = null;
+        first = (first + 1) % capacity;
         --fillCount;
-        return oldFirstItem;
+        return originalFirstItem;
     }
 
     /**
-     * Return oldest item, but don't remove it.
+     * Returns the oldest item, but doesn't remove it.
      */
     @Override
     public T peek() {
         if (isEmpty()) {
             throw new RuntimeException("Ring buffer underflow");
         }
-
-        return rb[first];
+        return ringBuffer[first];
     }
 
     private class IteratorHelper implements Iterator<T> {
@@ -82,9 +81,9 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
 
         @Override
         public T next() {
-            T currentThing = rb[currentIndex];
+            T currentItem = ringBuffer[currentIndex];
             ++currentIndex;
-            return currentThing;
+            return currentItem;
         }
     }
 
@@ -92,5 +91,4 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     public Iterator<T> iterator() {
         return new IteratorHelper();
     }
-
 }
