@@ -64,7 +64,7 @@ public class ArrayHeap<T> {
                 double priorityIncrease = priority - node.priority();
                 int targetIndex = contents.indexOf(node);
                 contents.set(targetIndex, new Node(item, priority));
-                /* Maintain the ArrayHeap. */
+                /* Maintains the ArrayHeap. */
                 if (priorityIncrease > 0) {
                     bubbleDown(targetIndex);
                 } else {
